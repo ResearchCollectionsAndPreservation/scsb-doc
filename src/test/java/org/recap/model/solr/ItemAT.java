@@ -1,6 +1,8 @@
+/*
 package org.recap.model.solr;
 
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.recap.BaseTestCase;
 
@@ -10,7 +12,7 @@ import java.util.List;
 
 import static org.junit.Assert.*;
 
-
+@Ignore
 public class ItemAT extends  BaseTestCase {
 
     @Before
@@ -91,3 +93,4 @@ public class ItemAT extends  BaseTestCase {
         assertTrue(indexedItem.getItemBibIdList().equals(itemBibIdList));
     }
 }
+*/
