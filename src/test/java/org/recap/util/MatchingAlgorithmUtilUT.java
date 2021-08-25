@@ -94,6 +94,9 @@ public class MatchingAlgorithmUtilUT extends BaseTestCaseUT4 {
     @Mock
     SolrIndexController bibItemIndexExecutorService;
 
+    @Mock
+    MatchingAlgorithmReportDataEntity matchingAlgorithmReportDataEntity;
+
     @Before
     public void setup() throws Exception {
         MockitoAnnotations.initMocks(this);
@@ -123,6 +126,15 @@ public class MatchingAlgorithmUtilUT extends BaseTestCaseUT4 {
         Mockito.when(bibliographicDetailsRepository.findByIdIn(Mockito.anyList())).thenReturn(bibliographicEntityList);
         Optional<Map<Integer,BibliographicEntity>> id= mockMatchingAlgorithmUtil.updateBibsForMatchingIdentifier(bibliographicEntityList);
         assertNotNull(id);
+    }
+
+    @Test
+    public void getReportDataEntity() throws Exception {
+        List<MatchingAlgorithmReportDataEntity> reportDataEntities=new ArrayList<>();
+        reportDataEntities.add(matchingAlgorithmReportDataEntity);
+        String headerValues = new String(new char[10005]);
+        mockMatchingAlgorithmUtil.getReportDataEntity("headerName",headerValues,reportDataEntities);
+        mockMatchingAlgorithmUtil.getTitleToMatch("an an an an an");
     }
 
     @Test
