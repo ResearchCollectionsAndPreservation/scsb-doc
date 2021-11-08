@@ -201,6 +201,7 @@ public class OngoingMatchingAlgorithmUtil {
         SolrDocumentList solrDocumentList = queryResponse.getResults();
         totalProcessed = totalProcessed + solrDocumentList.size();
         status = processOngoingMatchingAlgorithm(solrDocumentList, matchedBibIds, false, bibIdListToIndex);
+        logger.info("Total Number of Records Processed : {} ", totalProcessed);
 
         for (int pageNum = 1; pageNum < totalPages; pageNum++) {
             logger.info("{} : {}/{} ", ScsbConstants.CURRENT_PAGE, pageNum + 1, totalPages);
@@ -209,8 +210,9 @@ public class OngoingMatchingAlgorithmUtil {
             solrDocumentList = queryResponse.getResults();
             totalProcessed = totalProcessed + solrDocumentList.size();
             status = processOngoingMatchingAlgorithm(solrDocumentList, matchedBibIds, false, bibIdListToIndex);
+            logger.info("Total Number of Records Processed : {} ", totalProcessed);
         }
-        if (CollectionUtils.isNotEmpty(matchedBibIds)) {
+        /*if (CollectionUtils.isNotEmpty(matchedBibIds)) {
             bibIdListToIndex.addAll(matchedBibIds);
         }
         if (CollectionUtils.isNotEmpty(bibIdListToIndex)) {
@@ -219,9 +221,9 @@ public class OngoingMatchingAlgorithmUtil {
             if (solrIndexRequest.isIndexBibsForOngoingMa()) {
                 matchingAlgorithmUtil.indexBibs(bibIdListToIndexUnique);
             }
-        }
+        }*/
         ongoingMatchingStopWatch.stop();
-        logger.info("{} for OngoingMatching Grouping process {} for a total bibs of : {}", ScsbConstants.TOTAL_TIME_TAKEN, ongoingMatchingStopWatch.getTotalTimeSeconds(), bibIdListToIndex.size());
+        logger.info("{} for OngoingMatching Grouping process {} for a total bibs of : {}", ScsbConstants.TOTAL_TIME_TAKEN, ongoingMatchingStopWatch.getTotalTimeSeconds(), totalProcessed);
         return status;
     }
 
@@ -240,12 +242,9 @@ public class OngoingMatchingAlgorithmUtil {
         if (CollectionUtils.isNotEmpty(solrDocumentList)) {
             for (Iterator<SolrDocument> iterator = solrDocumentList.iterator(); iterator.hasNext(); ) {
                 SolrDocument solrDocument = iterator.next();
-                int bibId = (Integer) solrDocument.getFieldValue(ScsbConstants.BIB_ID);
-                bibIdListToIndex.add(bibId);
-                bibIdList.add(bibId);
                 status = processMatchingForBib(solrDocument, serialMvmBibIds, isCGDProcess);
             }
-            matchingAlgorithmUtil.resetMAQualifier(bibIdList, isCGDProcess);
+            //matchingAlgorithmUtil.resetMAQualifier(bibIdList, isCGDProcess);
         }
         stopWatch.stop();
         logger.info("Total Time taken to executing matching algorithm only for {} records : {}" , solrDocumentList.size(), stopWatch.getTotalTimeSeconds());
@@ -263,7 +262,6 @@ public class OngoingMatchingAlgorithmUtil {
         String status = ScsbCommonConstants.SUCCESS;
         List<Integer> itemIds = new ArrayList<>();
         Map<String, HashMap<Integer, BibItem>> bibItemMap = new HashMap<>();
-        int bibId = (Integer) solrDocument.getFieldValue(ScsbConstants.BIB_ID);
         bibItemMap = getMatchingBibsAndMatchPoints(solrDocument, bibItemMap);
         Map<String, HashMap<Integer, BibItem>> multiMatchBibItemMap = new HashMap<>();
         Map<String, HashMap<Integer, BibItem>> singleMatchBibItemMap = new HashMap<>();
@@ -755,8 +753,8 @@ public class OngoingMatchingAlgorithmUtil {
                 producerTemplate.sendBody("scsbactivemq:queue:saveMatchingReportsQ", Arrays.asList(reportEntity));
             } else {
                 groupBibsAndUpdateInDB(bibIdList, bibItemMap);
-                serialMvmBibIds.addAll(bibIdList);
-                ids = bibIdList;
+                //serialMvmBibIds.addAll(bibIdList);
+                //ids = bibIdList;
             }
         }
         return ids;
