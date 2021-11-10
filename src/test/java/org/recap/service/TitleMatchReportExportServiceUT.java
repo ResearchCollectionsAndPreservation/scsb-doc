@@ -122,7 +122,7 @@ public class TitleMatchReportExportServiceUT extends BaseTestCaseUT {
         String filename = "test";
         String institution_name = "PUL";
         int fileCount = 2;
-        Mockito.when(reportsServiceUtil.getTitleMatchedReportsExportS3(any())).thenReturn(titleMatchedReport);
+//        Mockito.when(reportsServiceUtil.getTitleMatchedReportsExportS3(any())).thenReturn(titleMatchedReport);
         ReflectionTestUtils.setField(titleMatchReportExportService, "titleReportDir", "test");
         ReflectionTestUtils.setField(titleMatchReportExportService, "s3Client", amazonS3);
         ReflectionTestUtils.setField(titleMatchReportExportService, "s3BucketName", "test");
