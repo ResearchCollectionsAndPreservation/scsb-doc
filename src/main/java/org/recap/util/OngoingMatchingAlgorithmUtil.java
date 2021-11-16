@@ -182,7 +182,7 @@ public class OngoingMatchingAlgorithmUtil {
     private String processOngoingMatching(SolrIndexRequest solrIndexRequest, Integer rows, List<Integer> matchedBibIds, List<Integer> bibIdListToIndex, boolean isCGDProcess) throws Exception {
         int start = 0;
         int totalProcessed = 0;
-        String query = ongoingMatchingAlgorithmQueryUtil.prepareQueryForOngoingMatchingGroupingProcessBasedOnCriteria(solrIndexRequest);
+        String query = ongoingMatchingAlgorithmQueryUtil.prepareQueryForOngoingMatchingGroupingOrCgdUpdateProcessBasedOnCriteria(solrIndexRequest, isCGDProcess);
         QueryResponse queryResponse = ongoingMatchingAlgorithmQueryUtil.fetchDataByQuery(query, rows, start);
         Integer totalNumFound = Math.toIntExact(queryResponse.getResults().getNumFound());
         int quotient = totalNumFound / (rows);
@@ -219,7 +219,7 @@ public class OngoingMatchingAlgorithmUtil {
         for (int pageNum = 0; pageNum < totalPages; pageNum++) {
             logger.info("{} : {}/{} ", ScsbConstants.CURRENT_PAGE, pageNum + 1, totalPages);
             solrIndexRequest.setBibIds(StringUtils.join(partitionedBibIds.get(pageNum), ","));
-            String query = ongoingMatchingAlgorithmQueryUtil.prepareQueryForOngoingMatchingGroupingProcessBasedOnCriteria(solrIndexRequest);
+            String query = ongoingMatchingAlgorithmQueryUtil.prepareQueryForOngoingMatchingGroupingOrCgdUpdateProcessBasedOnCriteria(solrIndexRequest, isCGDProcess);
             QueryResponse queryResponse = ongoingMatchingAlgorithmQueryUtil.fetchDataByQuery(query, rows, start);
             SolrDocumentList solrDocumentList = queryResponse.getResults();
             totalProcessed = totalProcessed + solrDocumentList.size();
@@ -338,7 +338,7 @@ public class OngoingMatchingAlgorithmUtil {
         }
         String fieldValue = String.valueOf(solrDocument.getFieldValue(matchPointString)).replaceAll("(^\\[|\\]$)", "");
         String bibIds = bibItemMap.keySet().stream().map(Objects::toString).collect(joining(","));
-        logger.info("Field Value : {} bibIds {}", fieldValue, bibItemMap.size());
+        logger.debug("Field Value : {} bibIds {}", fieldValue, bibItemMap.size());
         List<MatchingAlgorithmReportDataEntity> reportDataEntityList = reportDataDetailsRepository.getReportDataEntityForSingleMatch(LocalDate.now().toString(), matchPointString, fieldValue, bibIds);
         return reportDataEntityList.isEmpty();
     }

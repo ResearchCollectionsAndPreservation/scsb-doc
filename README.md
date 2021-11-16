@@ -2,7 +2,7 @@
 
 The SCSB Middleware codebase and components are all licensed under the Apache 2.0 license, with the exception of a set of API design components (JSF, JQuery, and Angular JS), which are licensed under MIT X11.
 
-SCSB-SOLR-CLIENT is a microservice application that is mainly used for indexing data to the Solr-server. This application’s major functionalities are accession, matching-algorithm, transfer-API, deaccession services, and report generation. 
+SCSB-DOC is a microservice application that is mainly used for indexing data to the Solr-server. This application’s major functionalities are accession, matching-algorithm, transfer-API, deaccession services, and report generation. 
 
 ## Software Required
 
@@ -13,7 +13,7 @@ SCSB-SOLR-CLIENT is a microservice application that is mainly used for indexing 
 
 1. Cloud Config Server
 
-Dspring.cloud.config.uri=http://phase4-scsb-config-server:8888
+Dspring.cloud.config.uri=http://phase4-scsb-config-server:<Port>
 
 
 ## Build
@@ -32,4 +32,4 @@ Naviagte Inside project folder where Dockerfile is present and Execute the below
 
 User the below command to Run the Docker
 
-**sudo docker run --name phase4-scsb-doc   -v /data:/recap-vol --label collect_logs_with_filebeat="true" --label decode_log_event_to_json_object="true"  -p 9090:9090 -e "ENV= -XX:+HeapDumpOnOutOfMemoryError  -XX:HeapDumpPath=/recap-vol/scsb-doc/heapdump/   -Dorg.apache.activemq.SERIALIZABLE_PACKAGES="*"   -Dspring.cloud.config.uri=http://phase4-scsb-config-server:8888 "  --network=scsb -d phase4-scsb-doc**
+**sudo docker run --name phase4-scsb-doc   -v <volume> --label collect_logs_with_filebeat="true" --label decode_log_event_to_json_object="true"  -p <Ports> -e "ENV= -XX:+HeapDumpOnOutOfMemoryError  -XX:HeapDumpPath=/recap-vol/scsb-doc/heapdump/   -Dorg.apache.activemq.SERIALIZABLE_PACKAGES="*"   -Dspring.cloud.config.uri=http://phase4-scsb-config-server:<Port> "  --network=scsb -d phase4-scsb-doc**
