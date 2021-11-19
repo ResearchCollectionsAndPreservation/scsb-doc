@@ -1,35 +1,35 @@
-//package org.recap.controller;
-//
-//import org.apache.solr.client.solrj.response.QueryResponse;
-//import org.apache.solr.common.SolrDocument;
-//import org.apache.solr.common.SolrDocumentList;
-//import org.junit.Ignore;
-//import org.junit.jupiter.api.Test;
-//import org.mockito.InjectMocks;
-//import org.mockito.Mock;
-//import org.mockito.Mockito;
-//import org.powermock.api.mockito.PowerMockito;
-//import org.recap.BaseTestCaseUT;
-//import org.recap.ScsbCommonConstants;
-//import org.recap.ScsbConstants;
-//import org.recap.matchingalgorithm.service.MatchingBibInfoDetailService;
-//import org.recap.model.solr.SolrIndexRequest;
-//import org.recap.util.DateUtil;
-//import org.recap.util.OngoingMatchingAlgorithmUtil;
-//import org.springframework.test.util.ReflectionTestUtils;
-//import org.springframework.ui.Model;
-//
-//import java.util.Date;
-//
-//import static org.junit.jupiter.api.Assertions.assertEquals;
-//import static org.junit.jupiter.api.Assertions.assertNotEquals;
-//import static org.junit.jupiter.api.Assertions.assertTrue;
-//
-//
-///**
-// * Created by angelind on 13/6/17.
-// */
-//
+package org.recap.controller;
+
+import org.apache.solr.client.solrj.response.QueryResponse;
+import org.apache.solr.common.SolrDocument;
+import org.apache.solr.common.SolrDocumentList;
+import org.junit.Ignore;
+import org.junit.jupiter.api.Test;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.Mockito;
+import org.powermock.api.mockito.PowerMockito;
+import org.recap.BaseTestCaseUT;
+import org.recap.ScsbCommonConstants;
+import org.recap.ScsbConstants;
+import org.recap.matchingalgorithm.service.MatchingBibInfoDetailService;
+import org.recap.model.solr.SolrIndexRequest;
+import org.recap.util.DateUtil;
+import org.recap.util.OngoingMatchingAlgorithmUtil;
+import org.springframework.test.util.ReflectionTestUtils;
+import org.springframework.ui.Model;
+
+import java.util.Date;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+
+/**
+ * Created by angelind on 13/6/17.
+ */
+
 //public class OngoingMatchingAlgorithmJobControllerUT extends BaseTestCaseUT {
 //
 //    @InjectMocks
@@ -54,7 +54,6 @@
 //
 //    @Test
 //    public void startMatchingAlgorithmJobForFetchUpdatedRecordsByBibIdsAndStartProcess() throws Exception {
-//
 //        SolrIndexRequest solrIndexRequest = getSolrIndexRequest();
 //        solrIndexRequest.setMatchBy(ScsbConstants.BIB_ID_LIST);
 //        solrIndexRequest.setBibIds("1");
@@ -79,7 +78,7 @@
 //        ReflectionTestUtils.setField(ongoingMatchingAlgoJobController,"batchSize",batchSize);
 //        Mockito.when(ongoingMatchingAlgoJobController.getLogger()).thenCallRealMethod();
 //        Mockito.when(ongoingMatchingAlgoJobController.getOngoingMatchingAlgorithmUtil()).thenReturn(ongoingMatchingAlgorithmUtil);
-//      //  Mockito.when(ongoingMatchingAlgorithmUtil.fetchUpdatedRecordsByDateRangeAndStartProcess(Mockito.any(),Mockito.any(),Mockito.anyInt(),Mockito.anyBoolean())).thenReturn(ScsbCommonConstants.SUCCESS);
+//     //   Mockito.when(ongoingMatchingAlgorithmUtil.fetchUpdatedRecordsByDateRangeAndStartProcess(Mockito.any(),Mockito.any(),Mockito.anyInt(),Mockito.anyBoolean())).thenReturn(ScsbCommonConstants.SUCCESS);
 //        Mockito.when(ongoingMatchingAlgoJobController.startMatchingAlgorithmJob(solrIndexRequest)).thenCallRealMethod();
 //        String status = ongoingMatchingAlgoJobController.startMatchingAlgorithmJob(solrIndexRequest);
 //        assertTrue(status.contains(ScsbCommonConstants.SUCCESS));
@@ -97,7 +96,7 @@
 //        ReflectionTestUtils.setField(ongoingMatchingAlgoJobController,"batchSize",batchSize);
 //        Mockito.when(ongoingMatchingAlgoJobController.getLogger()).thenCallRealMethod();
 //        Mockito.when(ongoingMatchingAlgoJobController.getOngoingMatchingAlgorithmUtil()).thenReturn(ongoingMatchingAlgorithmUtil);
-//     // Mockito.when(ongoingMatchingAlgorithmUtil.fetchUpdatedRecordsByDateRangeAndStartProcess(Mockito.any(),Mockito.any(),Mockito.anyInt(),Mockito.anyBoolean())).thenReturn(ScsbCommonConstants.SUCCESS);
+//      //  Mockito.when(ongoingMatchingAlgorithmUtil.fetchUpdatedRecordsByDateRangeAndStartProcess(Mockito.any(),Mockito.any(),Mockito.anyInt(),Mockito.anyBoolean())).thenReturn(ScsbCommonConstants.SUCCESS);
 //        Mockito.when(ongoingMatchingAlgoJobController.startMatchingAlgorithmJob(solrIndexRequest)).thenCallRealMethod();
 //        String status = ongoingMatchingAlgoJobController.startMatchingAlgorithmJob(solrIndexRequest);
 //        assertTrue(status.contains(ScsbCommonConstants.SUCCESS));
@@ -116,7 +115,7 @@
 //        Mockito.when(ongoingMatchingAlgoJobController.getDateUtil()).thenReturn(dateUtil);
 //        Mockito.when(ongoingMatchingAlgoJobController.getBatchSize()).thenReturn(batchSize);
 //        Mockito.when(ongoingMatchingAlgoJobController.getLogger()).thenCallRealMethod();
-//     //  Mockito.when(ongoingMatchingAlgorithmUtil.fetchUpdatedRecordsAndStartProcess(Mockito.any(),Mockito.any(),Mockito.anyBoolean(),Mockito.anyBoolean())).thenReturn(ScsbCommonConstants.SUCCESS);
+//     //   Mockito.when(ongoingMatchingAlgorithmUtil.fetchUpdatedRecordsAndStartProcess(Mockito.any(),Mockito.any(),Mockito.anyBoolean(),Mockito.anyBoolean())).thenReturn(ScsbCommonConstants.SUCCESS);
 //        Mockito.when(ongoingMatchingAlgoJobController.startMatchingAlgorithmJob(solrIndexRequest)).thenCallRealMethod();
 //        String status = ongoingMatchingAlgoJobController.startMatchingAlgorithmJob(solrIndexRequest);
 //        assertTrue(status.contains(ScsbCommonConstants.SUCCESS));
@@ -146,7 +145,7 @@
 //        Mockito.when(ongoingMatchingAlgoJobController.getOngoingMatchingAlgorithmUtil()).thenReturn(ongoingMatchingAlgorithmUtil);
 //        Mockito.when(ongoingMatchingAlgoJobController.getBatchSize()).thenReturn(batchSize);
 //        Mockito.when(ongoingMatchingAlgoJobController.getLogger()).thenCallRealMethod();
-//     // Mockito.when(ongoingMatchingAlgorithmUtil.fetchUpdatedRecordsByBibIdRangeAndStartProcess(Mockito.any(),Mockito.any(),Mockito.any(),Mockito.anyBoolean())).thenReturn(ScsbCommonConstants.SUCCESS);
+//    //    Mockito.when(ongoingMatchingAlgorithmUtil.fetchUpdatedRecordsByBibIdRangeAndStartProcess(Mockito.any(),Mockito.any(),Mockito.any(),Mockito.anyBoolean())).thenReturn(ScsbCommonConstants.SUCCESS);
 //        Mockito.when(ongoingMatchingAlgoJobController.startMatchingAlgorithmJob(solrIndexRequest)).thenCallRealMethod();
 //        String status = ongoingMatchingAlgoJobController.startMatchingAlgorithmJob(solrIndexRequest);
 //        assertTrue(status.contains(ScsbCommonConstants.SUCCESS));
@@ -166,7 +165,7 @@
 //        Mockito.when(ongoingMatchingAlgoJobController.getDateUtil()).thenReturn(dateUtil);
 //        Mockito.when(ongoingMatchingAlgoJobController.getLogger()).thenCallRealMethod();
 //        Mockito.when(matchingBibInfoDetailService.populateMatchingBibInfo(fromDate, toDate)).thenReturn(ScsbCommonConstants.SUCCESS);
-////        Mockito.when(ongoingMatchingAlgoJobController.getBatchSize()).thenReturn(batchSize);
+//        Mockito.when(ongoingMatchingAlgoJobController.getBatchSize()).thenReturn(batchSize);
 //        Mockito.when(ongoingMatchingAlgoJobController.startMatchingAlgorithmJob(solrIndexRequest)).thenCallRealMethod();
 //        String status = ongoingMatchingAlgoJobController.startMatchingAlgorithmJob(solrIndexRequest);
 //        assertTrue(status.contains(ScsbCommonConstants.SUCCESS));
