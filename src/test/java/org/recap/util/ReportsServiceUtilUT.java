@@ -1,7 +1,6 @@
 package org.recap.util;
 
-import io.swagger.models.auth.In;
-import org.apache.poi.ss.formula.functions.T;
+
 import org.apache.solr.client.solrj.SolrClient;
 import org.apache.solr.client.solrj.SolrQuery;
 import org.apache.solr.client.solrj.SolrRequest;
@@ -13,18 +12,20 @@ import org.apache.solr.client.solrj.response.QueryResponse;
 import org.apache.solr.common.SolrDocument;
 import org.apache.solr.common.SolrDocumentList;
 import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
+
 import org.powermock.api.mockito.PowerMockito;
+import org.powermock.core.classloader.annotations.PowerMockIgnore;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
-import org.recap.BaseTestCaseUT4;
-import org.recap.ScsbCommonConstants;
-import org.recap.ScsbConstants;
+import org.powermock.modules.junit4.PowerMockRunnerDelegate;
+import org.recap.*;
 import org.recap.model.jpa.DeaccessionItemChangeLog;
 import org.recap.model.jpa.MatchingScoreTranslationEntity;
 import org.recap.model.reports.ReportsRequest;
@@ -39,6 +40,7 @@ import org.recap.repository.jpa.MatchingScoreTranslationRepository;
 import org.recap.repository.solr.impl.BibSolrDocumentRepositoryImpl;
 import org.recap.service.TitleMatchReportExportService;
 import org.springframework.data.solr.core.SolrTemplate;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.util.ReflectionTestUtils;
 
 import java.text.DateFormat;
@@ -55,7 +57,9 @@ import static org.mockito.ArgumentMatchers.*;
 
 @RunWith(PowerMockRunner.class)
 @PrepareForTest({SolrTemplate.class, SolrClient.class})
-public class ReportsServiceUtilUT extends BaseTestCaseUT4 {
+@PowerMockRunnerDelegate(SpringJUnit4ClassRunner.class)
+@PowerMockIgnore({"com.sun.org.apache.xerces.*", "javax.xml.*", "org.xml.*"})
+public class ReportsServiceUtilUT extends BaseTestCase {
 
     @InjectMocks
     ReportsServiceUtil reportsServiceUtil;
@@ -103,6 +107,9 @@ public class ReportsServiceUtilUT extends BaseTestCaseUT4 {
     @Mock
     QueryResponse queryResponse;
 
+    @Mock
+    SolrTemplate SolrTemplate;
+
     @Before
     public void setup()throws Exception{
         MockitoAnnotations.initMocks(this);
@@ -128,7 +135,7 @@ public class ReportsServiceUtilUT extends BaseTestCaseUT4 {
         Mockito.when(titleMatchedReport.getPageNumber()).thenReturn(1);
         SolrTemplate mocksolrTemplate1 = PowerMockito.mock(SolrTemplate.class);
         ReflectionTestUtils.setField(reportsServiceUtil,"solrTemplate",mocksolrTemplate1);
-        SolrClient solrClient=PowerMockito.mock(SolrClient.class);
+        SolrClient solrClient= PowerMockito.mock(SolrClient.class);
         QueryResponse queryResponse=Mockito.mock(QueryResponse.class);
         PowerMockito.when(mocksolrTemplate1.getSolrClient()).thenReturn(solrClient);
         Mockito.when(solrClient.query(any(SolrQuery.class))).thenReturn(queryResponse);
@@ -165,7 +172,7 @@ public class ReportsServiceUtilUT extends BaseTestCaseUT4 {
         List<Item> items=new ArrayList<>();
         items.add(item);
         Mockito.when(item.getBarcode()).thenReturn("123456");
-        Mockito.when(bibItem.getBarcode()).thenReturn("123456");
+//        Mockito.when(bibItem.getBarcode()).thenReturn("123456");
         Mockito.when(bibItem.getItems()).thenReturn(items);
         List<String> cgd=new ArrayList<>();
         cgd.add(ScsbConstants.SHARED);
@@ -215,6 +222,7 @@ public class ReportsServiceUtilUT extends BaseTestCaseUT4 {
         Mockito.doCallRealMethod().when(bibSolrDocumentRepository).populateBibItem(any(), any());
         reportsServiceUtil.titleMatchReportsExport(titleMatchedReport);
     }
+
     @Test
     public void titleMatchReportsExport() throws Exception {
         List<String> titleMatch=new ArrayList<>();
@@ -239,7 +247,6 @@ public class ReportsServiceUtilUT extends BaseTestCaseUT4 {
         PowerMockito.when(mocksolrTemplate1.getSolrClient()).thenReturn(solrClient);
         Mockito.when(solrClient.query(any(SolrQuery.class))).thenReturn(queryResponse);
         Mockito.when(solrQueryBuilder.buildQueryTitleMatchedReport(Mockito.anyString(), any(), any(), any(),Mockito.anyString())).thenCallRealMethod();
-
         SolrDocumentList solrDocumentList=new SolrDocumentList();
         solrDocumentList.add(bibSolrDocument);
         solrDocumentList.setNumFound(1l);
@@ -321,6 +328,7 @@ public class ReportsServiceUtilUT extends BaseTestCaseUT4 {
         ReportsResponse reportsResponse = reportsServiceUtil.populateAccessionDeaccessionItemCounts(reportsRequest);
         assertNotNull(reportsResponse);
     }
+
 
     @Test
     public void populateCGDItemCounts() throws Exception {
@@ -528,6 +536,8 @@ public class ReportsServiceUtilUT extends BaseTestCaseUT4 {
         ReflectionTestUtils.invokeMethod(reportsServiceUtil,"prepareMatchingIdentifierList",bibItems);
 
     }
+
+
 
 
     @Test
