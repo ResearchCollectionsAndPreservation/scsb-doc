@@ -70,10 +70,9 @@ dependencies {
 	implementation('org.apache.camel.springboot:camel-aws-s3-starter:3.8.0')
 	implementation('org.apache.camel:camel-aws-s3:3.8.0')
 	implementation 'org.apache.activemq:activemq-camel:5.16.6'
-	implementation 'org.apache.activemq:activemq-pool:5.18.2'
-	implementation 'org.apache.activemq:activemq-broker:5.18.2'
-	implementation 'org.apache.activemq:activemq-client-jakarta:5.18.2' exclude module:"activemq-client"
-	//implementation 'org.apache.activemq:activemq-client:5.18.2'
+	implementation 'org.apache.activemq:activemq-pool:5.18.3'
+	implementation 'org.apache.activemq:activemq-broker:5.18.3'
+	implementation 'org.apache.activemq:activemq-client-jakarta:5.18.3' exclude module:"activemq-client"
 	implementation 'commons-beanutils:commons-beanutils:1.9.4'
 	implementation 'org.apache.commons:commons-collections4:4.4'
 	implementation 'info.freelibrary:freelib-marc4j:2.6.12'
@@ -81,7 +80,6 @@ dependencies {
 	implementation 'commons-codec:commons-codec:1.15'
 	implementation 'org.codehaus.jettison:jettison:1.5.4'
 	implementation 'junit:junit:4.13.2'
-	//implementation 'org.springframework.plugin:spring-plugin-core:2.0.0.RELEASE'
 	implementation('com.google.guava:guava:33.1.0-jre') {exclude module: "solr-solrj"}
 	implementation 'org.projectlombok:lombok:1.18.30'
 	implementation 'io.micrometer:micrometer-registry-prometheus'
@@ -109,7 +107,6 @@ dependencies {
 	implementation 'com.sun.mail:smtp:2.0.1'
 	implementation 'com.sun.mail:jakarta.mail:2.0.1'
 
-
 	testImplementation group: 'org.mockito', name: 'mockito-core', version: '5.5.0'
 	testImplementation group: 'org.powermock', name: 'powermock-api-mockito2', version: '2.0.9'
 	testImplementation group: 'org.powermock', name: 'powermock-module-junit4', version: '2.0.9'
@@ -120,7 +117,6 @@ dependencies {
 	implementation 'javax.servlet:javax.servlet-api:4.0.1'
 
 	implementation 'org.springdoc:springdoc-openapi-ui:1.7.0'
-
 
 }
 
@@ -169,12 +165,10 @@ jacocoTestReport {
 	}
 }
 
-
 jacoco {
 	toolVersion = "0.8.10"
 	reportsDirectory = layout.buildDirectory.dir('customJacocoReportDir')
 }
-
 
 task scsbDocJavadocs(type: Javadoc) {
 	source = sourceSets.main.java
