@@ -13,6 +13,7 @@ import org.recap.ScsbConstants;
 import org.recap.model.jpa.MatchingBibEntity;
 import org.recap.model.jpa.MatchingMatchPointsEntity;
 import org.recap.model.search.resolver.BibValueResolver;
+import org.recap.model.search.resolver.impl.bib.RootValueResolver;
 import org.recap.model.search.resolver.impl.bib.BibIdValueResolver;
 import org.recap.model.search.resolver.impl.bib.ISBNValueResolver;
 import org.recap.model.search.resolver.impl.bib.ISSNValueResolver;
@@ -211,6 +212,7 @@ public class SaveMatchingBibsCallable implements Callable {
     public List<BibValueResolver> getBibValueResolvers() {
         if (null == bibValueResolvers) {
             bibValueResolvers = new ArrayList<>();
+            bibValueResolvers.add(new RootValueResolver());
             bibValueResolvers.add(new ScsbRootValueResolver());
             bibValueResolvers.add(new BibIdValueResolver());
             bibValueResolvers.add(new IdValueResolver());

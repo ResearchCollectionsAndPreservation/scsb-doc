@@ -15,10 +15,11 @@ import org.recap.model.jpa.CollectionGroupEntity;
 import org.recap.model.jpa.HoldingsEntity;
 import org.recap.model.jpa.InstitutionEntity;
 import org.recap.model.jpa.ItemStatusEntity;
-import org.recap.model.search.resolver.impl.bib.ScsbRootValueResolver;
+import org.recap.model.search.resolver.impl.bib.*;
 import org.recap.model.search.resolver.BibValueResolver;
 import org.recap.model.search.resolver.HoldingsValueResolver;
 import org.recap.model.search.resolver.ItemValueResolver;
+import org.recap.model.search.resolver.impl.bib.RootValueResolver;
 import org.recap.model.search.resolver.impl.bib.AnomalyFlagValueResolver;
 import org.recap.model.search.resolver.impl.bib.AuthorDisplayValueResolver;
 import org.recap.model.search.resolver.impl.bib.AuthorSearchValueResolver;
@@ -149,6 +150,7 @@ public class CommonUtil {
     public List<BibValueResolver> getBibValueResolvers() {
         if (null == bibValueResolvers) {
             bibValueResolvers = new ArrayList<>();
+            bibValueResolvers.add(new RootValueResolver());
             bibValueResolvers.add(new ScsbRootValueResolver());
             bibValueResolvers.add(new AuthorDisplayValueResolver());
             bibValueResolvers.add(new AuthorSearchValueResolver());

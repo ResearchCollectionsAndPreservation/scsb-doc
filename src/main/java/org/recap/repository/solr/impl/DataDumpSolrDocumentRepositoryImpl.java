@@ -17,6 +17,7 @@ import org.recap.model.jpa.ItemEntity;
 import org.recap.model.search.SearchRecordsRequest;
 import org.recap.model.search.resolver.BibValueResolver;
 import org.recap.model.search.resolver.ItemValueResolver;
+import org.recap.model.search.resolver.impl.bib.RootValueResolver;
 import org.recap.model.search.resolver.impl.bib.BibIdValueResolver;
 import org.recap.model.search.resolver.impl.bib.DocTypeValueResolver;
 import org.recap.model.search.resolver.impl.bib.IdValueResolver;
@@ -374,6 +375,7 @@ public class DataDumpSolrDocumentRepositoryImpl implements CustomDocumentReposit
     public List<BibValueResolver> getBibValueResolversForDataDump() {
         if (null == bibValueResolvers) {
             bibValueResolvers = new ArrayList<>();
+            bibValueResolvers.add(new RootValueResolver());
             bibValueResolvers.add(new ScsbRootValueResolver());
             bibValueResolvers.add(new BibIdValueResolver());
             bibValueResolvers.add(new DocTypeValueResolver());

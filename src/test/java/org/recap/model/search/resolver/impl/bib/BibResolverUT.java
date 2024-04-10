@@ -235,7 +235,7 @@ public class BibResolverUT extends BaseTestCaseUT {
     }
     @Test
     public void testRootValueResolver() throws Exception {
-        ScsbRootValueResolver rootValueResolver = new ScsbRootValueResolver();
+        RootValueResolver rootValueResolver = new RootValueResolver();
         rootValueResolver.setValue(bibItem(),"test");
         rootValueResolver.isInterested("_scsbroot_");
         assertNotNull(rootValueResolver.getClass());
