@@ -160,6 +160,9 @@ public class Bib {
     @Field("MAQualifier")
     private Integer maQualifier;
 
+    @Field("_scsbroot_")
+    private String scsbroot;
+
     @Override
     public boolean equals(Object o) {
         if (this == o)

@@ -17,7 +17,7 @@ import jakarta.persistence.Table;
 @EqualsAndHashCode(callSuper = false)
 public class MatchingBibEntity extends AbstractEntity<Integer> {
     @Column(name = "ROOT")
-    private String version;
+    private String scsbroot;
 
     @Column(name = "BIB_ID")
     private Integer bibId;

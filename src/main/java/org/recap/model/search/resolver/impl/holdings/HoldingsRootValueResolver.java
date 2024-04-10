@@ -9,11 +9,11 @@ import org.recap.model.solr.Holdings;
 public class HoldingsRootValueResolver implements HoldingsValueResolver {
     @Override
     public Boolean isInterested(String field) {
-        return "_version_".equals(field);
+        return "_scsbroot_".equals(field);
     }
 
     @Override
     public void setValue(Holdings holdings, Object value) {
-        holdings.setVersion(String.valueOf(value));
+        holdings.setScsbroot((String)value);
     }
 }

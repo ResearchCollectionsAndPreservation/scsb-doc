@@ -122,6 +122,9 @@ public class BibItem {
     @Field("MAQualifier")
     private  Integer maQualifier;
 
+    @Field("_scsbroot_")
+    private String scsbroot;
+
     private String version;
 
     private List<Item> items = new ArrayList<>();

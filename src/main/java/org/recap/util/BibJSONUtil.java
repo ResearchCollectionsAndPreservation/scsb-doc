@@ -299,7 +299,7 @@ public class BibJSONUtil extends MarcUtil {
             Bib bib = new Bib();
             Integer bibliographicId = bibliographicEntity.getId();
             bib.setBibId(bibliographicId);
-
+            bib.setScsbroot((bibliographicEntity.getOwningInstitutionId()+"_"+bibliographicEntity.getOwningInstitutionBibId()));
             bib.setDocType(ScsbCommonConstants.BIB);
             bib.setContentType("parent");
             bib.setId(bibliographicEntity.getOwningInstitutionId()+bibliographicEntity.getOwningInstitutionBibId());

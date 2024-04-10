@@ -155,6 +155,7 @@ public final class SearchRecordsUtil {
                 boolean isCirculationFreezeEnabled = Boolean.parseBoolean(propertyMap.get(institutionCode));
                 SearchResultRow searchResultRow = new SearchResultRow();
                 searchResultRow.setBibId(bibItem.getBibId());
+                searchResultRow.setScsbroot(bibItem.getScsbroot());
                 searchResultRow.setTitle(bibItem.getTitleDisplay());
                 searchResultRow.setAuthor(bibItem.getAuthorDisplay());
                 searchResultRow.setPublisher(bibItem.getPublisher());
@@ -164,6 +165,7 @@ public final class SearchRecordsUtil {
                 searchResultRow.setBibCreatedDate(bibItem.getBibCreatedDate());
                 searchResultRow.setOwningInstitutionBibId(bibItem.getOwningInstitutionBibId());
                 searchResultRow.setMatchingIdentifier(bibItem.getMatchingIdentifier());
+                searchResultRow.setScsbroot(bibItem.getScsbroot());
                 String authorSearch = CollectionUtils.isNotEmpty(bibItem.getAuthorSearch()) ? bibItem.getAuthorSearch().get(0) : " ";
                 searchResultRow.setAuthorSearch(authorSearch);
                 Holdings holdings = CollectionUtils.isEmpty(bibItem.getHoldingsList()) ? new Holdings() : bibItem.getHoldingsList().get(0);
@@ -205,6 +207,7 @@ public final class SearchRecordsUtil {
                                 mixedStatus.add(isCirculationFreezeEnabled ? ScsbCommonConstants.NOT_AVAILABLE : item.getAvailabilityDisplay());
                                 searchResultRow.setAvailability(isCirculationFreezeEnabled ? ScsbCommonConstants.NOT_AVAILABLE : item.getAvailabilityDisplay());
                                 searchResultRow.setImsLocation(item.getImsLocation());
+
                             }
                         }
                         for (String status:mixedStatus){

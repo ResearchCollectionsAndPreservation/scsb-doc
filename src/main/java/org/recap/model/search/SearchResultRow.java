@@ -43,4 +43,5 @@ public class SearchResultRow implements Serializable {
     private Date bibCreatedDate;
     private String authorSearch;
     private String matchingIdentifier;
+    private String scsbroot;
 }

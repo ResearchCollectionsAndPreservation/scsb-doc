@@ -15,6 +15,7 @@ import org.recap.model.jpa.CollectionGroupEntity;
 import org.recap.model.jpa.HoldingsEntity;
 import org.recap.model.jpa.InstitutionEntity;
 import org.recap.model.jpa.ItemStatusEntity;
+import org.recap.model.search.resolver.impl.bib.ScsbRootValueResolver;
 import org.recap.model.search.resolver.BibValueResolver;
 import org.recap.model.search.resolver.HoldingsValueResolver;
 import org.recap.model.search.resolver.ItemValueResolver;
@@ -39,7 +40,6 @@ import org.recap.model.search.resolver.impl.bib.OwningInstitutionValueResolver;
 import org.recap.model.search.resolver.impl.bib.PublicationDateValueResolver;
 import org.recap.model.search.resolver.impl.bib.PublicationPlaceValueResolver;
 import org.recap.model.search.resolver.impl.bib.PublisherValueResolver;
-import org.recap.model.search.resolver.impl.bib.VersionValueResolver;
 import org.recap.model.search.resolver.impl.bib.SubjectValueResolver;
 import org.recap.model.search.resolver.impl.bib.TitleDisplayValueResolver;
 import org.recap.model.search.resolver.impl.bib.TitleMatchValueResolver;
@@ -149,7 +149,7 @@ public class CommonUtil {
     public List<BibValueResolver> getBibValueResolvers() {
         if (null == bibValueResolvers) {
             bibValueResolvers = new ArrayList<>();
-            bibValueResolvers.add(new VersionValueResolver());
+            bibValueResolvers.add(new ScsbRootValueResolver());
             bibValueResolvers.add(new AuthorDisplayValueResolver());
             bibValueResolvers.add(new AuthorSearchValueResolver());
             bibValueResolvers.add(new BibIdValueResolver());

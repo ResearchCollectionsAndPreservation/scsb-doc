@@ -6,14 +6,14 @@ import org.recap.model.solr.BibItem;
 /**
  * Created by peris on 9/29/16.
  */
-public class RootValueResolver implements BibValueResolver {
+public class ScsbRootValueResolver implements BibValueResolver {
     @Override
     public Boolean isInterested(String field) {
-        return "_version_".equalsIgnoreCase(field);
+        return "_scsbroot_".equalsIgnoreCase(field);
     }
 
     @Override
     public void setValue(BibItem bibItem, Object value) {
-        bibItem.setVersion(String.valueOf(value));
+        bibItem.setScsbroot((String) value);
     }
 }
