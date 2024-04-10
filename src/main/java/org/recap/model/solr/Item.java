@@ -97,8 +97,6 @@ public class Item {
     @Field("ImsLocation")
     private String imsLocation;
 
-    @Field("_scsbroot_")
     private String scsbroot;
-
     private String version;
 }

@@ -48,7 +48,6 @@ public class Holdings {
     @Field("IsDeletedHoldings")
     private boolean isDeletedHoldings = false;
 
-    @Field("_scsbroot_")
     private String scsbroot;
 
     private String version;
