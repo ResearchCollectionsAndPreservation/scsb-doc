@@ -1,7 +1,7 @@
 buildscript {
     ext {
-        springBootVersion = '4.0.2'
-        set('springCloudVersion', "2025.0.0")
+        springBootVersion = '4.0.7'
+        set('springCloudVersion', "2025.1.2")
     }
     repositories {
         mavenCentral()
@@ -21,7 +21,7 @@ buildscript {
 
 plugins {
     id 'io.spring.dependency-management' version '1.1.7'
-    id 'org.springframework.boot' version '4.0.2'
+    id 'org.springframework.boot' version '4.0.7'
     id "org.sonarqube" version "6.3.1.5724"
 }
 
@@ -55,57 +55,58 @@ repositories {
 
 
 dependencies {
-    implementation fileTree(dir: '/data/commonjar', include: '*3.1.jar')
+    implementation fileTree(dir: '/data/commonjar', include: '*3.2.jar')
     implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
     implementation("org.springframework.boot:spring-boot-starter-thymeleaf")
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
     implementation('org.springframework.boot:spring-boot-starter-web') {
         exclude module: 'spring-webmvc'
     }
-    implementation 'org.apache.camel.springboot:camel-spring-boot-starter:4.17.0'
+    implementation 'org.apache.camel.springboot:camel-spring-boot-starter:4.18.4'
     implementation('org.springframework.data:spring-data-solr:4.3.15')
             {exclude module: 'solr-solrj'; exclude module: 'solr-data-commons'; exclude module: 'spring-data-jpa'}
-    implementation 'org.apache.solr:solr-solrj:9.9.0'
-    implementation("org.springframework.data:spring-data-jpa:4.0.2")
-    implementation("org.springframework.data:spring-data-commons:4.0.2")
-    implementation 'org.apache.camel:camel-solr:4.17.0'
-    implementation 'org.apache.camel:camel-bindy:4.17.0'
-    implementation 'org.apache.camel:camel-metrics:4.17.0'
-    implementation 'org.apache.camel:camel-csv:4.17.0'
-    implementation 'org.apache.camel:camel-mail:4.17.0'
-    implementation 'org.apache.camel:camel-ftp:4.17.0'
-    implementation 'org.apache.camel:camel-activemq:4.17.0'
+    implementation 'org.apache.solr:solr-solrj:9.10.1'
+    implementation("org.springframework.data:spring-data-jpa:4.0.7")
+    implementation("org.springframework.data:spring-data-commons:4.0.7")
+    implementation 'org.apache.camel:camel-solr:4.18.4'
+    implementation 'org.apache.camel:camel-bindy:4.18.4'
+    implementation 'org.apache.camel:camel-metrics:4.18.4'
+    implementation 'org.apache.camel:camel-csv:4.18.4'
+    implementation 'org.apache.camel:camel-mail:4.18.4'
+    implementation 'org.apache.camel:camel-ftp:4.18.4'
+    implementation 'org.apache.camel:camel-activemq:4.18.4'
     implementation('org.apache.camel.springboot:camel-aws-s3-starter:3.8.0')
     implementation('org.apache.camel:camel-aws-s3:3.8.0')
-    implementation 'org.apache.activemq:activemq-pool:6.1.4'
-    implementation 'org.apache.activemq:activemq-broker:6.1.4'
-    implementation 'org.apache.activemq:activemq-client:6.1.4'
+    implementation 'org.apache.activemq:activemq-pool:6.2.9'
+    implementation 'org.apache.activemq:activemq-broker:6.2.9'
+    implementation 'org.apache.activemq:activemq-client:6.2.9'
     implementation 'commons-beanutils:commons-beanutils:1.11.0'
-    implementation 'org.apache.commons:commons-collections4:4.5.0'
+    implementation 'org.apache.commons:commons-collections4:4.6.0'
     implementation 'info.freelibrary:freelib-marc4j:2.6.12'
     implementation 'net.sourceforge.javacsv:javacsv:2.0'
-    implementation 'commons-codec:commons-codec:1.20.0'
-    implementation 'org.codehaus.jettison:jettison:1.5.4'
-    implementation('com.google.guava:guava:33.5.0-jre') {exclude module: "solr-solrj"}
-    implementation 'org.projectlombok:lombok:1.18.42'
+    implementation 'commons-codec:commons-codec:1.22.1'
+    implementation 'org.codehaus.jettison:jettison:1.5.7'
+    implementation 'junit:junit:4.13.2'
+    implementation('com.google.guava:guava:33.6.0-jre') {exclude module: "solr-solrj"}
+    implementation 'org.projectlombok:lombok:1.18.46'
     implementation 'io.micrometer:micrometer-registry-prometheus'
     implementation 'org.springframework.boot:spring-boot-starter-actuator'
     implementation("org.springframework.boot:spring-boot-starter-activemq")
     implementation 'org.springframework.boot:spring-boot-starter-web'
-    implementation("org.springframework.boot:spring-boot-starter-webmvc:4.0.2")
+    implementation("org.springframework.boot:spring-boot-starter-webmvc:4.0.7")
     implementation("org.springframework.boot:spring-boot-starter-data-solr:2.4.13")
-    implementation('org.apache.commons:commons-text:1.14.0')
+    implementation('org.apache.commons:commons-text:1.15.0')
     implementation 'net.logstash.logback:logstash-logback-encoder:9.0'
     implementation 'org.springframework.cloud:spring-cloud-starter-config'
     implementation 'org.springframework.cloud:spring-cloud-starter-bus-amqp'
-    implementation 'org.json:json:20250517'
-    implementation 'com.google.code.gson:gson:2.13.2'
-    implementation('org.apache.poi:poi-ooxml:5.5.0');
-    implementation 'org.apache.camel:camel-jms:4.17.0'
-    implementation 'io.zipkin.brave:brave:6.3.0'
-    annotationProcessor 'org.projectlombok:lombok:1.18.42'
-    testImplementation 'org.projectlombok:lombok:1.18.42'
-    testAnnotationProcessor 'org.projectlombok:lombok:1.18.42'
+    implementation 'org.json:json:20260719'
+    implementation 'com.google.code.gson:gson:2.14.0'
+    implementation('org.apache.poi:poi-ooxml:5.5.1');
+    implementation 'org.apache.camel:camel-jms:4.18.4'
+    implementation 'io.zipkin.brave:brave:6.3.1'
+    annotationProcessor 'org.projectlombok:lombok:1.18.46'
+    testImplementation 'org.projectlombok:lombok:1.18.46'
+    testAnnotationProcessor 'org.projectlombok:lombok:1.18.46'
     implementation 'com.mysql:mysql-connector-j:9.1.0'
     annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
     testImplementation('org.springframework.restdocs:spring-restdocs-mockmvc')
@@ -113,7 +114,11 @@ dependencies {
     implementation 'jakarta.mail:jakarta.mail-api:2.2.0-M1'
     implementation 'com.sun.mail:smtp:2.0.2'
     implementation 'com.sun.mail:jakarta.mail:2.0.2'
-    implementation("tools.jackson.core:jackson-core:3.0.3")
+    implementation("tools.jackson.core:jackson-core:3.2.2")
+    implementation('org.apache.tomcat.embed:tomcat-embed-core:11.0.25')
+    implementation('org.apache.tomcat.embed:tomcat-embed-el:11.0.25')
+    implementation('org.apache.tomcat.embed:tomcat-embed-websocket:11.0.25')
+    implementation('org.apache.tomcat:tomcat-annotations-api:11.0.25')
 
     testImplementation 'org.mockito:mockito-core:5.23.0'
     testImplementation 'org.junit.jupiter:junit-jupiter-api:6.1.0'
@@ -123,17 +128,17 @@ dependencies {
     implementation 'org.springframework.cloud:spring-cloud-starter-bus-amqp'
     implementation 'org.modelmapper:modelmapper:3.2.6'
     implementation 'javax.servlet:javax.servlet-api:4.0.1'
-    implementation 'org.springframework:spring-context:7.0.3'
-    implementation("org.springframework.cloud:spring-cloud-context:5.0.0")
-    implementation("org.springframework.cloud:spring-cloud-config-client:5.0.0")
-    implementation("org.springframework.cloud:spring-cloud-commons:5.0.0")
-    implementation("org.springframework.cloud:spring-cloud-bus:5.0.0")
-    implementation("org.springframework.cloud:spring-cloud-stream-binder-rabbit:5.0.0")
-    implementation("org.springframework.cloud:spring-cloud-stream-binder-rabbit-core:5.0.0")
+    implementation 'org.springframework:spring-context:7.0.9'
+    implementation("org.springframework.cloud:spring-cloud-context:5.0.3")
+    implementation("org.springframework.cloud:spring-cloud-config-client:5.0.3")
+    implementation("org.springframework.cloud:spring-cloud-commons:5.0.3")
+    implementation("org.springframework.cloud:spring-cloud-bus:5.0.3")
+    implementation("org.springframework.cloud:spring-cloud-stream-binder-rabbit:5.0.3")
+    implementation("org.springframework.cloud:spring-cloud-stream-binder-rabbit-core:5.0.3")
 
 
-    implementation("io.micrometer:context-propagation:1.2.0")
-    implementation("org.springframework.cloud:spring-cloud-stream:5.0.0")
+    implementation("io.micrometer:context-propagation:1.2.1")
+    implementation("org.springframework.cloud:spring-cloud-stream:5.0.3")
 
     implementation 'jakarta.annotation:jakarta.annotation-api:3.0.0'
 
@@ -145,7 +150,7 @@ dependencies {
 configurations.all {
     resolutionStrategy.eachDependency { DependencyResolveDetails details ->
         if (details.requested.group == 'org.apache.logging.log4j') {
-            details.useVersion '3.0.0-beta2'
+            details.useVersion '2.26.1'
         }
     }
     exclude group: 'javax.annotation', module: 'jsr250-api'
